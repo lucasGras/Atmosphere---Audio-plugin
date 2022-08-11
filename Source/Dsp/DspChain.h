@@ -2,10 +2,11 @@
 // Created by Lucas on 11/08/2022.
 //
 
-#ifndef ATMOSPHERE_DSPCHAIN_H
-#define ATMOSPHERE_DSPCHAIN_H
+#ifndef ATMOSPHERE_DSP_CHAIN_H
+#define ATMOSPHERE_DSP_CHAIN_H
 
 #include "Processors/BlurProcessor.h"
+#include "Processors/ReverbProcessor.h"
 
 namespace atms {
     namespace dsp {
@@ -14,10 +15,12 @@ namespace atms {
 
             struct ChainSettings {
                 BlurProcessor::Parameters blurParameters;
+                ReverbProcessor::Parameters reverbParameters;
             };
 
             enum ChainProcessors {
                 Blur,
+                Reverb
             };
 
             DspChain();
@@ -27,17 +30,18 @@ namespace atms {
             void processChain(const juce::dsp::ProcessContextReplacing<float>& context);
             void resetChain();
 
-            void updateChainParameters(ChainSettings parameters);
+            void updateChainParameters(juce::AudioProcessorValueTreeState &apvts);
             juce::AudioProcessorValueTreeState::ParameterLayout getApvtsLayout();
 
         private:
             ChainSettings getChainSettings(juce::AudioProcessorValueTreeState& apvts);
 
         private:
-            juce::dsp::ProcessorChain<BlurProcessor> chain;
+            juce::dsp::ProcessorChain<BlurProcessor, ReverbProcessor> chain;
+            juce::dsp::ProcessSpec spec;
         };
     }
 }
 
 
-#endif //ATMOSPHERE_DSPCHAIN_H
+#endif //ATMOSPHERE_DSP_CHAIN_H

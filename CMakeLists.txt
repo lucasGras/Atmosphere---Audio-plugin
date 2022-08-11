@@ -68,6 +68,8 @@ jucer_project_files("Atmosphere/Source"
   .         .         .         "Source/Dsp/DspInterface.h"
   x         .         .         "Source/Dsp/Processors/BlurProcessor.cpp"
   .         .         .         "Source/Dsp/Processors/BlurProcessor.h"
+  x         .         .         "Source/Dsp/Processors/ReverbProcessor.cpp"
+  .         .         .         "Source/Dsp/Processors/ReverbProcessor.h"
   x         .         .         "Source/Dsp/DspChain.cpp"
   .         .         .         "Source/Dsp/DspChain.h"
 )

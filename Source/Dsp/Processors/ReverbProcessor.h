@@ -2,21 +2,22 @@
 // Created by Lucas on 11/08/2022.
 //
 
-#ifndef ATMOSPHERE_BLUR_PROCESSOR_H
-#define ATMOSPHERE_BLUR_PROCESSOR_H
+#ifndef ATMOSPHERE_REVERB_PROCESSOR_H
+#define ATMOSPHERE_REVERB_PROCESSOR_H
 
 #include "../DspInterface.h"
 
 namespace atms {
     namespace dsp {
-        class BlurProcessor: public DspInterface {
+        class ReverbProcessor: public DspInterface {
         public:
             struct Parameters {
-                float filterFrequency = 20000.0f;
+                bool loop = false;
+                float strength = 0.0f;
             };
 
-            BlurProcessor();
-            ~BlurProcessor();
+            ReverbProcessor();
+            ~ReverbProcessor();
 
             void prepare(const juce::dsp::ProcessSpec& spec) override;
             void process(const juce::dsp::ProcessContextReplacing<float>& context) override;
@@ -28,13 +29,9 @@ namespace atms {
             void setParameters(Parameters parameters, juce::dsp::ProcessSpec spec);
 
         private:
-            juce::dsp::ProcessorDuplicator<
-                juce::dsp::IIR::Filter<float>,
-                juce::dsp::IIR::Coefficients<float>
-            > processor;
+            juce::dsp::Reverb processor;
         };
     }
 }
 
-
-#endif //ATMOSPHERE_BLUR_PROCESSOR_H
+#endif //ATMOSPHERE_REVERB_PROCESSOR_H
