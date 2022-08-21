@@ -3,6 +3,17 @@
 
     This file contains the basic framework code for a JUCE plugin processor.
 
+    C:\Users\Lucas>SET Processor
+    PROCESSOR_ARCHITECTURE=AMD64
+    PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 158 Stepping 12, GenuineIntel
+    PROCESSOR_LEVEL=6
+    PROCESSOR_REVISION=9e0c
+
+    x86: Standalone OK, VST3 KO
+    x86_amd64: build KO
+    amd64:
+    amd64_x86: build KO (warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86')
+
   ==============================================================================
 */
 
@@ -167,7 +178,8 @@ bool AtmosphereAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* AtmosphereAudioProcessor::createEditor()
 {
-    return new juce::GenericAudioProcessorEditor(*this);
+    // return new juce::GenericAudioProcessorEditor(*this);
+    return new AtmosphereAudioProcessorEditor(*this);
 }
 
 //==============================================================================

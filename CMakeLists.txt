@@ -72,6 +72,8 @@ jucer_project_files("Atmosphere/Source"
   .         .         .         "Source/Dsp/Processors/ReverbProcessor.h"
   x         .         .         "Source/Dsp/DspChain.cpp"
   .         .         .         "Source/Dsp/DspChain.h"
+  x         .         .         "Source/Style/LookAndFeel.cpp"
+  .         .         .         "Source/Style/LookAndFeel.h"
 )
 
 jucer_project_module(

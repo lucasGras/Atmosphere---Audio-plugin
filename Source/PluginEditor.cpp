@@ -13,6 +13,15 @@
 AtmosphereAudioProcessorEditor::AtmosphereAudioProcessorEditor (AtmosphereAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
+    juce::LookAndFeel::setDefaultLookAndFeel(&laf);
+
+    this->slider.setSliderStyle(juce::Slider::SliderStyle::Rotary);
+    this->slider.setRange(0.0f, 100.0f);
+    this->slider.setValue(0.0f);
+    this->slider.setTextBoxStyle(juce::Slider::NoTextBox, true, 100, 25);
+    addAndMakeVisible(this->slider);
+
+
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize (400, 300);
@@ -30,11 +39,9 @@ void AtmosphereAudioProcessorEditor::paint (juce::Graphics& g)
 
     g.setColour (juce::Colours::white);
     g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
 }
 
 void AtmosphereAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    this->slider.setBounds(getWidth() / 2 - 100, getHeight() / 2 - 100, 200, 200);
 }
